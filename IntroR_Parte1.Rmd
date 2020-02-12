@@ -58,9 +58,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introducción a R y RStudio
 
-[Presentación](https://github.com/RLadiesBIO/Presentaciones-Aurkezpenak/tree/master/2019-06-27_PrimerEncuentro_LehenTopaketa) 
+[Presentación](http://bilbaodatalab.wikitoki.org/wp-content/uploads/sites/5/2020/01/IntroR_DataLab_RLadies_Bilbao.pdf) 
 
-![](img/rstudio.png)
 $~$ 
 
 # Conceptos básicos de R
@@ -147,13 +146,6 @@ help("dplyr")
 ```
 
 
-
-* Vignetes:
-```{r2, eval=F}
-vignete("dplyr")
-```
-
-
 $~$ 
 
 ### Prácticas de buen uso
@@ -174,7 +166,7 @@ $~$
 
 * Crear una carpeta con un script llamado miprimerscript.R.
 * Definir el working directory en el script como la carpeta contenedora.
-* Instalar y cargar el paquete "markdown". Ver vignette.
+* Instalar y cargar el paquete "markdown".
 * Comentar en el script que hemos instalado el paquete "markdown".
 
 
@@ -224,7 +216,7 @@ x + MiNumero
 Y almacenarlas en nuevas variables:
 
 ```{r}
-y = x*2
+y = x * 2
 y
 ```
 
@@ -281,20 +273,20 @@ x[1]
 Y podemos saber si se cumple una condición en un vector:
 
 ```{r}
-x == 'a'
+x == "a"
 ```
 
 y dónde:
 
 ```{r}
-which(x == 'a')
+which(x == "a")
 ```
 
 
 Podemos nombrar los elementos de un vector con `names()`:
 
 ```{r}
-miVec <- c(1,2,3) 
+miVec <- c(1, 2, 3) 
 names(miVec) <- c("col1", "col2", "col3")
 miVec
 ```
@@ -304,9 +296,9 @@ Podemos concatenar dos vectores:
 
 
 ```{r}
-v1 <- c(1,2,3) 
+v1 <- c(1, 2, 3) 
 v2 <- c(4, 5, 6)
-v3 <- c(v1,v2)
+v3 <- c(v1, v2)
 v3
 ```
 
@@ -322,8 +314,8 @@ Se pueden hacer operaciones con vectores (suma, resta...) por elementos utilizan
 
 
 ```{r}
-v1*v2
-v1%*%v2
+v1 * v2
+v1 %*% v2
 ```
 
 $~$
@@ -341,7 +333,7 @@ $~$
 * Matrices (2D): estructuras bi-dimensionales con datos del mismo tipo. Se crean utilizando la function `matrix()`:
 
 ```{r}
-miMat <- matrix(v3, nrow=2, ncol=3, byrow=TRUE)
+miMat <- matrix(v3, nrow = 2, ncol = 3, byrow = TRUE)
 miMat
 ```
 
@@ -356,18 +348,35 @@ class(miMat)
 
 
 ```{r df}
-v1 <- c(1,2,3)
-v2 <- c("a","b","c")
-miDF <- data.frame(Col1=v1, Col2=v2)
+v1 <- c(1, 2, 3)
+v2 <- c("a", "b", "c")
+miDF <- data.frame(Col1 = v1, Col2 = v2)
 miDF
+```
+
+
+Para acceder a los elementos de una matriz, accedemos de la misma manera que a los elementos de los vectores, es decir, utilizando `[]`. Pero en este caso, al tener las matrices dos dimensiones, tendremos que especificarle la fila y la columna del elemento al que queremos acceder. Por ejemplo, para acceder al elemento que está en la primera fila, en la segunda columna, haremos:
+
+```{r}
+miMat[1,2]
+```
+
+
+
+Podemos crear matrices de zeros, de unos o de `NA`-s, que es el "vacio" en R:
+
+```{r}
+matrix(0, nrow = 4, ncol = 2)
+matrix(1, nrow = 2, ncol = 3)
+matrix(NA, nrow = 3, ncol = 3)
 ```
 
 
 Podemos unir matrices por fila o columna, utilizando `rbind()` y`cbind()`, correspondientemente:
 
 ```{r}
-miMat1 <- matrix(v3, nrow=2, ncol=3, byrow=TRUE)
-miMat2 <- matrix(v3, nrow=2, ncol=3, byrow=FALSE)
+miMat1 <- matrix(v3, nrow = 2, ncol = 3, byrow = TRUE)
+miMat2 <- matrix(v3, nrow = 2, ncol = 3, byrow = FALSE)
 
 rbind(miMat1, miMat2)
 cbind(miMat1, miMat2)
@@ -386,7 +395,8 @@ $$
 \end{pmatrix}
 \begin{pmatrix}
 9 & 1 & 6\\ 
-7 & 6 & 4
+7 & 6 & 4 \\
+3 & 2 & 1
 \end{pmatrix}
 $$
 
@@ -409,13 +419,13 @@ Para calcular la media de 3 números, podemos calcularla a mano:
 
 ```{r}
 
-(3+4+5)/3
+(3 + 4 + 5) / 3
 ```
 
 O podemos calcular utilizando la funcion `mean()`:
 
 ```{r}
-x <- c(3,4,5)
+x <- c(3, 4, 5)
 mean(x)
 ```
 
@@ -424,7 +434,7 @@ Otro ejemplo muy útil es `seq()` para crear secuencias. Utilizando el operador 
 
 ```{r}
 1:10
-seq(from=1, to=10, by=2)
+seq(from = 1, to = 10, by = 2)
 ```
 
 
@@ -432,7 +442,7 @@ Otra función básica como útil es `rep()`, que repite el argumento de la prime
 
 ```{r}
 rep(1, 10)
-rep(c(1,2,3),5)
+rep(c(1, 2, 3), 5)
 ```
 
 
@@ -440,7 +450,7 @@ Podemos usar estas funciones para operar con vectores:
 ```{r}
 v <- 1:20
 v
-v[seq(1,20,2)]
+v[seq(1, 20, 2)]
 ```
 
 ```{r}
@@ -464,7 +474,7 @@ Algunas veces los agumentos tienen valores por defecto (default), de manera que 
 
 
 ```{r}
-rnorm(n=10)
+rnorm(n = 10)
 ```
 
 
@@ -503,7 +513,7 @@ Aparecerá una ficha de información con las siguientes secciones:
 De esta manera, si queremos generar 10 números aleatorios siguiendo una distribución normal de media 2 y desviación estándar 5:
 
 ```{r}
-rnorm(n=10, mean=2, sd=5)
+rnorm(n = 10, mean = 2, sd = 5)
 ```
 
 
@@ -533,7 +543,7 @@ Por ejemplo, podemos crear una función que, dado un número te devuela la raiz 
 
 ```{r, eval=T}
 MiPrimeraFuncion <- function(x) {
-  y <- sqrt(3*x)
+  y <- sqrt(3 * x)
   return(y)
 }
 
